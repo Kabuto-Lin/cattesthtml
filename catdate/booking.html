@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>預約參觀</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <link rel="stylesheet" href="css/navbar-hover.css" />
+  <link rel="icon" href="./images/logo.png" />
+
+  <style>
+    /* <link rel="stylesheet" href="css/navbar-hover.css" /> */
+  </style>
+</head>
+
+<body>
+  <!-- 導覽列  淺色背景 + 深色文字（預設）-->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="幸福貓舍" style="height:40px;"> 幸福貓舍
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="index.html" data-hover="INDEX">首頁</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="about.html" data-hover="ABOUT">關於我們</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link hover-toggle" href="cats.html" data-hover="CATS">愛心認養</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="shop.html" data-hover="BUY">貓咪購買</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="booking.html" data-hover="SEE">預約參觀</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="contact.html" data-hover="CONTACT">聯絡我們</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="login.html" data-hover="login">會員登錄</a>
+          </li>
+          <!-- 新增留言板頁籤 -->
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="message_board.html" data-hover="BOARD">留言板</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <h1>預約參觀</h1>
+    <!--  form-control統一輸入欄位外 -->
+    <form>
+      <div class="mb-3">
+        <!-- 必填欄位 required-->
+        <label for="name" class="form-label">姓名 🧑‍💼</label>
+        <input type="text" class="form-control" id="name" required>
+      </div>
+      <div class="mb-3">
+        <!-- 必填欄位 required-->
+        <label for="date" class="form-label">預約日期📅</label>
+        <input type="date" class="form-control" id="date" required min="">
+        <!-- 無法預約已故的time -->
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date().toISOString().split("T")[0];
+            document.getElementById("date").min = today;
+          });
+        </script>
+      </div>
+      <!--  加入時間 -->
+      <div class="mb-3">
+        <label for="time" class="form-label">參觀時段🐾</label>
+        <select class="form-control" id="time" required>
+          <option value="">請選擇時段</option>
+          <option>上午 10:00～12:00</option>
+          <option>下午 14:00～16:00</option>
+          <option>晚上 18:00～20:00</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="message" class="form-label">備註❤️</label>
+        <textarea class="form-control" id="message" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+    <script>
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("預約已送出，我們會儘速與您聯繫！");
+      });
+    </script>
+  </div>
+  <div class="text-center mt-4">
+    <a href="index.html" class="btn btn-outline-secondary">不知道要選哪隻？來做貓咪個性測驗 🐱</a>
+  </div>
+  <!-- 浮動社群按鈕 -->
+  <div style="position: fixed; top: 35%; right: 15px; z-index: 1000; display: flex; flex-direction: column; gap: 10px;">
+    <a href="https://reurl.cc/W06XNk" target="_blank"><img src="images/facebook.png" alt="Facebook" width="40"></a>
+    <a href="https://line.me" target="_blank"><img src="images/line.png" alt="Line" width="40"></a>
+    <a href="https://reurl.cc/rEy19b" target="_blank"><img src="./images/instagram.png" alt="Instagram" width="40"></a>
+    <a href="https://m.me/" target="_blank"><img src="images/messenger.png" alt="Messenger" width="40"></a>
+  </div>
+  <script src="js/bootstrap.bundle.js"></script>
+  <!-- <div class="tenor-gif-embed" data-postid="17980219731687437085" data-share-method="host" data-aspect-ratio="1.27027" data-width="100%"><a href="https://tenor.com/view/chiikawa-%E5%90%89%E4%BC%8A%E5%8D%A1%E5%93%87-dance-%E5%B0%8F%E5%85%AB-%E5%85%94%E5%85%94-gif-17980219731687437085">Chiikawa 吉伊卡哇 GIF</a>from <a href="https://tenor.com/search/chiikawa-gifs">Chiikawa GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
+</body>
+
+</html>

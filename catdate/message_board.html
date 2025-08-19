@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>幸福貓舍 - 留言板</title>
+  <!-- css -->
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <link rel="stylesheet" href="css/navbar-hover.css" />
+  <link rel="icon" href="./images/logo.png" />
+  <style>
+    /* 您可以在這裡添加留言板相關的 CSS 樣式 */
+    .message-board-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff0f5;
+      border: 2px solid #ffc1e3;
+      border-radius: 10px;
+    }
+
+    .message-form {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .message-list {
+      margin-top: 20px;
+    }
+
+    .message-item {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+
+    .message-item:last-child {
+      border-bottom: none;
+    }
+
+    .message-item strong {
+      color: #af56a0;
+    }
+
+    .background-overlay {
+      background-image: url('images/paw-pattern.png');
+      opacity: 0.08;
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-repeat: repeat;
+      background-size: 100px;
+      pointer-events: none;
+    }
+
+    /* 保持與首頁一致的特色區塊標題樣式 */
+    section h2 {
+      font-weight: bold;
+      color: #af56a0;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-overlay"></div>
+  <!-- 導覽列 -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="幸福貓舍" style="height:40px;"> 幸福貓舍
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="index.html" data-hover="INDEX">首頁</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="about.html" data-hover="ABOUT">關於我們</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link hover-toggle" href="cats.html" data-hover="CATS">愛心認養</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="shop.html" data-hover="BUY">貓咪購買</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="booking.html" data-hover="SEE">預約參觀</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="contact.html" data-hover="CONTACT">聯絡我們</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-toggle" href="login.html" data-hover="login">會員登錄</a>
+          </li>
+          <!-- 留言板頁籤，設定為 active -->
+          <li class="nav-item active">
+            <a class="nav-link hover-toggle" href="message_board.html" data-hover="BOARD">留言板</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 頁面標題 -->
+  <header class="text-center py-5" style="background-color: #af56a0; color: white;">
+    <div class="container">
+      <p class="display-4 mb-3">留言板</p>
+      <p class="lead">歡迎留下您的寶貴意見或分享與貓咪的點滴</p>
+    </div>
+  </header>
+
+  <!-- 留言板內容區塊 -->
+  <section class="container my-5">
+    <h2>留言區</h2>
+
+    <div class="message-board-container">
+      <!-- 留言表單 -->
+      <div class="message-form">
+        <h4>發表新留言</h4>
+        <!-- 待修正無法回傳到資料庫 -->
+        <form id="newMessageForm">
+          <div class="mb-3">
+            <label for="userName" class="form-label">您的名字</label>
+            <input type="text" class="form-control" id="userName" required>
+          </div>
+          <div class="mb-3">
+            <label for="messageContent" class="form-label">留言內容</label>
+            <textarea class="form-control" id="messageContent" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="background-color: #af56a0; border-color: #af56a0;">送出留言</button>
+        </form>
+      </div>
+
+      <!-- 留言列表 -->
+      <div class="message-list" id="messagesContainer">
+        <h4>所有留言</h4>
+        <!-- 這裡將會顯示留言，例如： -->
+        <div class="message-item">
+          <p><strong>訪客A:</strong> 貓舍的環境很棒，貓咪都很健康活潑！</p>
+          <small class="text-muted">2023-10-27 10:00</small>
+        </div>
+        <div class="message-item">
+          <p><strong>訪客B:</strong> 謝謝你們讓我找到我的貓咪夥伴！</p>
+          <small class="text-muted">2023-10-27 10:05</small>
+        </div>
+        <!-- 更多留言會動態加載到這裡 -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 回頂按鈕 -->
+  <a href="#"
+    style="position: fixed; bottom: 30px; left: 30px; background: #eee; border-radius: 50%; width: 50px; height: 50px;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 1000;">
+    <span style="font-size: 12px;">TOP</span>
+  </a>
+
+  <!-- 浮動社群按鈕 -->
+  <div style="position: fixed; top: 35%; right: 15px; z-index: 1000; display: flex; flex-direction: column; gap: 10px;">
+    <a href="https://reurl.cc/W06XNk" target="_blank"><img src="images/facebook.png" alt="Facebook" width="40"></a>
+    <a href="https://line.me" target="_blank"><img src="images/line.png" alt="Line" width="40"></a>
+    <a href="https://reurl.cc/rEy19b" target="_blank"><img src="./images/instagram.png" alt="Instagram" width="40"></a>
+    <a href="https://m.me/" target="_blank"><img src="images/messenger.png" alt="Messenger" width="40"></a>
+  </div>
+
+  <!-- 頁尾資訊 -->
+  <footer style="background:#f2f0ef; color:#333; padding:30px 15px; text-align:center; font-size: 14px;">
+    <div class="container">
+      <p>市話：04-12345678　|　手機：0930676211</p>
+      <p>統編：25433519　|　地址：台中市南屯區大墩五街46號　|　特寵業字第S1070111號</p>
+      <p style="margin-top: 15px;">
+        <a href="index.html">回首頁</a>　|　<a href="about.html">關於我們</a>　|　<a href="cats.html">愛心認養</a>　|　<a
+          href="shop.html">貓咪購買</a>　|　<a href="booking.html">預約參觀</a>　|　<a href="contact.html">聯絡我們</a> | <a href="message_board.html">留言板</a>
+      </p>
+      <p style="margin-top: 15px; color: #666;">Designed by 幸福貓舍 Copyright © 2025. 累積人氣: 233868</p>
+    </div>
+  </footer>
+
+  <!-- 您可以在這裡添加處理留言的 JavaScript -->
+  <script>
+    // 這裡需要 JavaScript 來處理表單提交、發送數據到後端、接收新留言並顯示。
+    // 實現即時功能通常需要 WebSocket 或定時 AJAX 請求。
+    // 這部分超出了單純修改 HTML 的範圍。
+    document.getElementById('newMessageForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const userName = document.getElementById('userName').value;
+        const messageContent = document.getElementById('messageContent').value;
+
+        if (userName && messageContent) {
+            // 在這裡添加將留言發送到伺服器的程式碼
+            console.log('新留言:', { name: userName, content: messageContent });
+
+            // 簡單地在前端顯示新留言 (非即時，頁面刷新會消失)
+            const messagesContainer = document.getElementById('messagesContainer');
+            const newMessageHtml = `
+                <div class="message-item">
+                    <p><strong>${userName}:</strong> ${messageContent}</p>
+                    <small class="text-muted">剛剛</small>
+                </div>
+            `;
+            messagesContainer.innerHTML += newMessageHtml; // 將新留言添加到列表末尾
+
+            // 清空表單
+            document.getElementById('newMessageForm').reset();
+
+            // 實際的即時功能需要伺服器端和更複雜的 JavaScript 實現。
+        } else {
+            alert('請填寫名字和留言內容！');
+        }
+    });
+  </script>
+</body>
+
+</html>

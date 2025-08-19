@@ -1,0 +1,279 @@
+/* 統一風格樣式 */
+/* 定義全站通用變數，包括主色、背景色與字型，方便後續統一調整 */
+:root {
+    --primary-pink: #af56a0;
+    --light-pink: #ffe4ec;
+    --soft-background: #fff0f5;
+    --main-font: "Microsoft JhengHei", sans-serif;
+}
+
+/* 統一的背景模板與樣式 */
+body {
+    font-family: "Microsoft JhengHei", sans-serif;
+    background-color: #fff5f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 192, 203, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(255, 192, 203, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 50% 80%, rgba(255, 192, 203, 0.1) 0%, transparent 70%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.background-overlay {
+    background-image: url('images/paw-pattern.png');
+    /* 背景圖：貓腳印圖樣 */
+    opacity: 0.08;
+    /* 淡淡的透明度，像浮水印 */
+    position: fixed;
+    /* 固定在整個螢幕 */
+    z-index: -1;
+    /* 在最底層（背景） */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: repeat;
+    /* 重複鋪滿整個畫面 */
+    background-size: 100px;
+    /* 每個圖樣大小 */
+    pointer-events: none;
+    /* 不影響滑鼠點擊 */
+}
+
+/* 讓背景圖案產生緩慢移動的浮動感 */
+@keyframes bgFloat {
+    0% {
+        background-position: 0 0, 0 0, 0 0, 0 0;
+    }
+
+    100% {
+        background-position: 5% 3%, 8% 6%, 3% 10%, 40px 40px;
+    }
+}
+
+/* 讓標題統一粉紅色與粗體，保持設計一致性 */
+h1,
+h2 {
+    color: var(--primary-pink);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* 設定 navbar 淡粉背景與底部邊框 */
+.navbar {
+    background-color: var(--light-pink);
+    border-bottom: 1px solid #f4cdd9;
+}
+
+/* 導覽列連結與品牌名為深粉紫色、較粗字重 */
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #5a3e50 !important;
+    font-weight: 500;
+}
+
+/* 滑過時文字變成主色，並加上底線 */
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--primary-pink) !important;
+    text-decoration: underline;
+}
+
+/* 卡片加入陰影與滑動浮起效果 */
+.card {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* 片標題變粉色並加粗，凸顯重點 */
+.card-title {
+    color: var(--primary-pink);
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: var(--primary-pink);
+    border: none;
+}
+
+/*  主按鈕使用品牌色，滑過時轉為較深的粉紫色 */
+.btn-primary:hover {
+    background-color: #8b3f7a;
+}
+
+/* 輪播圖的圖片固定高度、自動裁切與圓角 */
+.carousel-inner img {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.blockquote {
+    background: var(--soft-background);
+    border-left: 5px solid #d6c1ff;
+    padding: 1rem;
+    border-radius: 8px;
+    font-style: italic;
+    color: #555;
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+}
+
+.slide-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.rounded-circle {
+    border: 3px solid #c1e2ff;
+}
+
+/* 頁尾背景為淡灰，置中小字體顯示 */
+footer {
+    background: #f2f0ef;
+    color: #333;
+    padding: 30px 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* 回到頂部按鈕 */
+a[href="#"] {
+    background: #eee;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1000;
+    font-size: 12px;
+}
+
+/* 新功能區塊 */
+.features {
+    background-color: #fff0f5;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.features .icon {
+    font-size: 3rem;
+    color: var(--primary-pink);
+    margin-bottom: 1rem;
+}
+
+.features h4 {
+    color: var(--primary-pink);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+
+
+
+/* ===== 滑鼠移上去時，原文字消失，浮現另一段（通常是英文）文字。 ===== */
+/* 統一hover效果 */
+/* hover-toggle 定位不亂跑 */
+.hover-toggle {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    color: var(--primary-pink);
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+/* 浮出文字從底部滑出來 */
+.hover-toggle::after {
+    content: attr(data-hover);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-pink);
+    background-color: rgba(241, 230, 230, 0.938);
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.4s ease;
+    font-weight: inherit;
+    font-size: inherit;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hover-toggle:hover {
+    color: transparent;
+}
+
+/* 淡入顯示 opacity: 0 → 1 */
+.hover-toggle:hover::after {
+    top: 0;
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* LOGO調整 */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+/* 行走貓咪 */
+#walkingCat {
+    position: fixed;
+    bottom: 20px;
+    left: -200px;
+    height: 80px;
+    z-index: 999;
+    animation: walkCat 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes walkCat {
+    0% {
+        left: -200px;
+        transform: scaleX(1);
+    }
+
+    50% {
+        left: calc(100% + 200px);
+        transform: scaleX(1);
+    }
+
+    51% {
+        transform: scaleX(-1);
+    }
+
+    100% {
+        left: -200px;
+        transform: scaleX(-1);
+    }
+}
